@@ -13,8 +13,8 @@
 
 
 -- Dumping database structure for carshop
-DROP DATABASE IF EXISTS `carshop`;
-CREATE DATABASE IF NOT EXISTS `carshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+-- DROP DATABASE IF EXISTS `carshop`;
+CREATE DATABASE IF NOT EXISTS `carshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `carshop`;
 
 -- Dumping structure for table carshop.account_managers
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `account_managers` (
   `license_number` varchar(50) NOT NULL,
   PRIMARY KEY (`employee_ID`),
   CONSTRAINT `FK1_am_employees` FOREIGN KEY (`employee_ID`) REFERENCES `employees` (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.account_managers: ~1 rows (approximately)
 /*!40000 ALTER TABLE `account_managers` DISABLE KEYS */;
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `cars` (
   UNIQUE KEY `car_ID` (`car_ID`),
   KEY `cars_fk_1` (`inventory_manager_ID`),
   CONSTRAINT `cars_fk_1` FOREIGN KEY (`inventory_manager_ID`) REFERENCES `inventory_managers` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.cars: ~0 rows (approximately)
 /*!40000 ALTER TABLE `cars` DISABLE KEYS */;
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `customer_DOB` date NOT NULL,
   PRIMARY KEY (`customer_ID`),
   UNIQUE KEY `customer_ID` (`customer_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.customers: ~5 rows (approximately)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `dealership` (
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`dealership_id`),
   UNIQUE KEY `dealership_id` (`dealership_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.dealership: ~1 rows (approximately)
 /*!40000 ALTER TABLE `dealership` DISABLE KEYS */;
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
   UNIQUE KEY `employee_ID` (`employee_ID`),
   KEY `employees_fk_1` (`role_ID`),
   CONSTRAINT `employees_fk_1` FOREIGN KEY (`role_ID`) REFERENCES `roles` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.employees: ~0 rows (approximately)
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `inventory_managers` (
   `license_number` varchar(50) NOT NULL,
   PRIMARY KEY (`employee_ID`),
   CONSTRAINT `FK1_im_employees` FOREIGN KEY (`employee_ID`) REFERENCES `employees` (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.inventory_managers: ~1 rows (approximately)
 /*!40000 ALTER TABLE `inventory_managers` DISABLE KEYS */;
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `order_status` (
   UNIQUE KEY `order_status_ID` (`order_status_ID`),
   KEY `FK1_os_so` (`sales_order_ID`),
   CONSTRAINT `FK1_os_so` FOREIGN KEY (`sales_order_ID`) REFERENCES `sales_orders` (`sales_order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.order_status: ~2 rows (approximately)
 /*!40000 ALTER TABLE `order_status` DISABLE KEYS */;
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   PRIMARY KEY (`permission_ID`),
   UNIQUE KEY `permission_ID` (`permission_ID`),
   UNIQUE KEY `permission_name` (`permission_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.permissions: ~6 rows (approximately)
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`role_ID`),
   UNIQUE KEY `role_ID` (`role_ID`),
   UNIQUE KEY `role_name` (`role_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.roles: ~3 rows (approximately)
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
@@ -241,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `role_permissions` (
   KEY `role_permission_fk_2` (`role_ID`),
   CONSTRAINT `role_permission_fk_1` FOREIGN KEY (`permission_ID`) REFERENCES `permissions` (`permission_id`),
   CONSTRAINT `role_permission_fk_2` FOREIGN KEY (`role_ID`) REFERENCES `roles` (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.role_permissions: ~7 rows (approximately)
 /*!40000 ALTER TABLE `role_permissions` DISABLE KEYS */;
@@ -272,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `sales_orders` (
   CONSTRAINT `FK1_sales_order_customer` FOREIGN KEY (`customer_ID`) REFERENCES `customers` (`customer_id`),
   CONSTRAINT `FK2_sales_order_cars` FOREIGN KEY (`car_ID`) REFERENCES `cars` (`car_id`),
   CONSTRAINT `FK3_sales_order_employee` FOREIGN KEY (`employee_ID`) REFERENCES `employees` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.sales_orders: ~0 rows (approximately)
 /*!40000 ALTER TABLE `sales_orders` DISABLE KEYS */;
@@ -289,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `sales_representatives` (
   `license_number` varchar(50) NOT NULL,
   PRIMARY KEY (`employee_ID`),
   CONSTRAINT `FK1_sr_employees` FOREIGN KEY (`employee_ID`) REFERENCES `employees` (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table carshop.sales_representatives: ~2 rows (approximately)
 /*!40000 ALTER TABLE `sales_representatives` DISABLE KEYS */;
