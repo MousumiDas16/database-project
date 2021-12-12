@@ -39,7 +39,7 @@ require('admin_menu.php');
          
               <?php
 
-        $sql = "SELECT * FROM employees";
+        $sql = "SELECT * FROM employees ORDER BY last_name ASC";
         $result = $connection->query($sql);
         if($result->num_rows>0)
         {

@@ -1,24 +1,37 @@
 <?php
-session_start();
-$con = mysqli_connect("localhost","root","","test");
+require('authenticate.php');
+require('dbconnector.php');
 
-if(isset($_POST['deleteCustomer_btn']))
-{
-    $id = $_POST['deleteCustomer'];
-
-    $query = "DELETE FROM customer WHERE customerID='$id' ";
-    $query_run = mysqli_query($con, $query);
-
-    if($query_run)
-    {
-        $_SESSION['status'] = "Data Deleted Successfully";
-        header("Location: fetchCustomer.php");
-    }
-    else
-    {
-        $_SESSION['status'] = "Data Not Deleted";
-        header("Location: fetchCustomer.php");
-    }
+if (isset($_GET['customerID'])) {
+    
 }
 
+$customerID = $_GET['customerID'];
+//echo $carID;
+
+$Select = "SELECT customer_ID FROM customers WHERE customer_ID = ?";
+$Delete = "DELETE from customers WHERE customer_ID =?";
+$stmt = $connection->prepare($Select);
+$stmt->bind_param("i", $customerID);
+$stmt->execute();
+$stmt->bind_result($resultcarID);
+$stmt->store_result();
+$stmt->fetch();
+$rnum = $stmt->num_rows;
+if ($rnum > 0) {
+    $stmt->close();
+    $stmt = $connection->prepare($Delete);
+    $stmt->bind_param("i", $customerID);
+    if ($stmt->execute()) {                
+                header("location: fetchCustomers.php?result=deleteSuccess");
+            }
+}
+else
+{
+    //echo "not found";
+    header("location: fetchCustomers.php?result=deleteFailed");
+}
+
+
+?>
 ?>

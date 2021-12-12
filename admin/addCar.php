@@ -207,7 +207,7 @@ require('admin_menu.php');
             </td>
            
            </tr> 
-           <tr> <td>&nbsp;</td> <td>&nbsp;</td><td>&nbsp;</td><td><input type="submit" id="btn" name="submit" value="Save to inventory"></td> </tr>
+           <tr> <td>&nbsp;</td> <td>&nbsp;</td><td>&nbsp;</td><td><input type="submit" id="btn" name="submit" value="Save to inventory"> <a href="fetchCar.php">Go back</a></td> </tr>
            </table>
 
         </form>

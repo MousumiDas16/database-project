@@ -45,7 +45,7 @@
   
    <div style="float: right; padding-right: 20px">
             <?php echo "<h5 >User: ". $first_name." ".$last_name."</h3>"; ?>
-       <p> <a href="profile.php">Profile</a> | <a href="logout.php">Log out</a> </p>
+       <p> <a href="addEmployee.php?empID=<?php echo $userid; ?>">Profile</a> | <a href="logout.php">Log out</a> </p>
           </div>
           
     </header>

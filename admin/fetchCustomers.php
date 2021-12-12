@@ -44,7 +44,7 @@ require('admin_menu.php');
              
               <?php
 
-        $sql = "SELECT * FROM customers";
+        $sql = "SELECT * FROM customers ORDER BY customer_last_name ASC";
         $result = $connection->query($sql);
         if($result->num_rows>0)
         {
@@ -60,7 +60,11 @@ require('admin_menu.php');
                echo "<td>". $row['customer_phone_number']."</td>\n";
                echo "<td>". $row['customer_email']."</td>\n";
                 echo "<td>". $row['customer_username']."</td>\n"; 
-               echo "<td>". $row['customer_DOB']."</td>\n";              
+               echo "<td>". $row['customer_DOB']."</td>\n";   
+                echo "<td><a href='addCustomer.php?customerID=". $row['customer_ID']."'>EDIT</a></td>";
+               
+               echo "<td><a  onclick=\"return confirm('Do you really want to delete this customer?')\" href='deleteCustomer.php?customerID=". $row['customer_ID']."'>DELETE</a></td>\n";
+                    echo "</tr>";
             }
         }
         else{
@@ -76,6 +80,43 @@ require('admin_menu.php');
          <div class="col-md-8">
              <h5><a href="addCustomer.php">Add a new customer</a></h5>
           </div>
+          
+          <?php
+     if (isset($_GET['result'])){
+         
+         if ($_GET['result']=='insertSuccess'){
+             echo "<div class='col-md-8' style='color: green'>
+             Customer was successfully added !
+          </div>";
+         }
+         else if ($_GET['result']=='insertFailed'){
+             echo "<div class='col-md-8' style='color: red'>
+             Unable to add! Person already exists!
+          </div>";
+         }
+         
+         else if ($_GET['result']=='deleteSuccess'){
+             echo "<div class='col-md-4' style='color: teal'>
+             Customer was successfully removed!
+          </div>";
+         
+         }
+         else if ($_GET['result']=='deleteFailed'){
+             echo "<div class='col-md-4' style='color: red'>
+             Unable to delete! Customer does not exist!
+          </div>";
+         
+         }
+         else if ($_GET['result']=='editSuccess'){
+             echo "<div class='col-md-4' style='color: blue'>
+             Customer succesfully updated!
+          </div>";
+         
+         }
+         
+     }
+
+?>
        
         </div>
       </div>

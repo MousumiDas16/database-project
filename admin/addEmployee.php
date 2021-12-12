@@ -118,7 +118,7 @@ require('admin_menu.php');
             
          <td>
         <input style="width: 120px"  type="submit" value="Save" name="submit"> &nbsp;    
-        <input style="width: 120px"  type="reset" value="Clear Form"></td> 
+        <input style="width: 120px"  type="reset" value="Clear Form"> <a href="fetchEmployee.php">Go back</a></td> 
         </tr>
         </table>
         

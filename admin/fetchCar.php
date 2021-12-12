@@ -42,7 +42,7 @@ require('admin_menu.php');
          
               <?php
 
-        $sql = "SELECT * FROM cars";
+        $sql = "SELECT * FROM cars ORDER BY car_year DESC";
         $result = $connection->query($sql);
         if($result->num_rows>0)
         {
