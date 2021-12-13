@@ -1,7 +1,7 @@
  <footer class="bg-dark text-center">
         
           <div class="card-footer text-white">
-            © 2021 Copyright: Bill's used cars
+            © 2021 Copyright: Far From Broken
           </div>
 
         
